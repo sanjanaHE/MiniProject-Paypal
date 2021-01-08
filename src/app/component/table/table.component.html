@@ -1,0 +1,44 @@
+<div class="d-inline-block pb-3" ngbDropdown #myDrop="ngbDropdown">
+    <button class="btn btn-outline-primary mr-2" id="dropdownManual" ngbDropdownAnchor (focus)="myDrop.open()">Search
+        by</button>
+    <div ngbDropdownMenu aria-labelledby="dropdownManual">
+        <button ngbDropdownItem (click)="clicked('name')">Name</button>
+        <button ngbDropdownItem (click)="clicked('populationG')">Population > than</button>
+        <button ngbDropdownItem (click)="clicked('populationL')">Population < than</button>
+                <button ngbDropdownItem (click)="clicked('areaL')">Area < than</button>
+                        <button ngbDropdownItem (click)="clicked('areaG')">Area > than</button>
+                        <button ngbDropdownItem (click)="clicked('currency')">Currency</button>
+    </div>
+</div>
+<div class="row pb-3">
+    <div class="col-4">
+        <label>{{show}}</label>
+        <input type="text" class="col-4 form-control" [(ngModel)]="value">
+    </div>
+
+
+</div>
+<div class="row pb-3">
+    <div class="col-2">
+        <button class="btn btn-sm btn-primary" (click)="search(show,value)">Search</button>
+    </div>
+</div>
+
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th *ngFor="let col of columns" (click)="sortTable(col.val)">{{col.key}}</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let country of countries">
+            <td><img [src]="country.flag" class="img-responsive" width="50" height="50" /></td>
+            <td>{{country.name}}</td>
+            <td>{{country.area}}</td>
+            <td>{{country.currencies[0].code}}</td>
+            <td>{{country.region}}</td>
+            <td>{{country.subregion}}</td>
+            <td>{{country.population}}</td>
+        </tr>
+    </tbody>
+</table>
